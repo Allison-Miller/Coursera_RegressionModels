@@ -87,7 +87,7 @@ model11=stepAIC(model10, direction="backward")
 summary(model11)
 ```
 
-## Confidence 
+## Coefficients and confidence 
 ```{r,echo=F, eval=F}
 model12=lm(mpg~am+cyl+hp+wt,mtcars)
 summary(model12)
@@ -95,15 +95,15 @@ confint(model12)
 ```
 Looking at the coefficients and confidence intervals for the final model, we can say with 95% confidence:
 
-1)A car with manual transmission gets between 1 mpg less to 4.7 mpg more than an automatic (mean of +1.8).  
-2)A 6 cylinder car reduces mpg by 0 to -6 mpg compared to a 4 cylinder (mean of -3).   
-3)An 8 cylinder car gets between +2.5 mpg  to -6.8 mpg compared to a 4 cylinder (mean of -2.1).  
-4)A car will get 0.7 to 4.3 less mpg per 1000 lb increase in weight (mean of -2.4).  
-5)An increase by 1 horsepower will reduce mpg by between 0.004 and 0.6 mpg (mean of -0.03).  
+1)A car with manual transmission gets between 1 mpg less to 4.7 mpg more than an automatic (coef of +1.8, p-vlaue=0.21 not significant).  
+2)A 6 cylinder car reduces mpg by 0 to -6 mpg compared to a 4 cylinder (coef of -3, p-value=0.041, significant).   
+3)An 8 cylinder car gets between +2.5 mpg  to -6.8 mpg compared to a 4 cylinder (coef of -2.1, p-value-0.35, not significant).  
+4)A car will get 0.7 to 4.3 less mpg per 1000 lb increase in weight (coef of -2.4, p-value=0.009, significant).  
+5)An increase by 1 horsepower will reduce mpg by between 0.004 and 0.6 mpg (coef of -0.03, p-value=0.027, significant).  
 
 ## Model diagnotics and conclusions
 
-To verify my model is a good fit, I checked the residuals with plots (Appendix, Figure 2). The residuals versus fitted values appear to be evenly distributed around zero, the normal Q-Q plot indicates approximate normality of the standardized residuals against the theoretical ones, The Scale-Location plot again shows there is no strong trend in the residuals, and the Residuals versus Leverage plot shows no outstanding leverage points. So the residuals appear fine, but the acid test is how good the model is at predicting mpg (Appendix, Figure 3).  The plot of actual mpg against predicted mpg is very good indeed, therefore this model seems a good fit for determining the effect of transmission type (controlled for the other variables in the model).  I also looked at my model based on p-values from step-forward selection to see how well it predicts mpg (Appendix, Figure 4).  This model also looks pretty good.  So both approaches to model selection that I used appear to give me good prediction outcomes.  This is not a surprise given the large amount of colinearlity in the data variables.  In conclusion, mpg in this data set is mainly a function of number of cylinders, horsepower, and weight.  Increasing any or all of these will likely lead to reduced mpg.  Transmission type is less important in mpg than these other three factors.  However, choice of a different model, such as produced using my step-forward approach, would lead to a different conclusion, i.e there is a significant difference on mpg with transmission type (and increase of 1 to 5.3 mpg for automatic transmissions).  I conclude that it is not possible to say with absolute certainty whether or not transmission type is important, as model choice can lead to somewhat different conclusions due to the colinearity of transmission type with many of the other variables measured. 
+To verify my model is a good fit, I checked the residuals with plots (Appendix, Figure 2). The residuals versus fitted values appear to be evenly distributed around zero, the normal Q-Q plot indicates approximate normality of the standardized residuals against the theoretical ones, The Scale-Location plot again shows there is no strong trend in the residuals, and the Residuals versus Leverage plot shows no outstanding leverage points. So the residuals appear fine, but the acid test is how good the model is at predicting mpg (Appendix, Figure 3).  The plot of actual mpg against predicted mpg is very good indeed, therefore this model seems a good fit for determining the effect of transmission type (controlled for the other variables in the model).  I also looked at my model based on p-values from step-forward selection to see how well it predicts mpg (Appendix, Figure 4).  This model also looks pretty good.  So both approaches to model selection that I used appear to give me good prediction outcomes.  This is not a surprise given the large amount of colinearlity in the data variables.  In conclusion, mpg in this data set is mainly a function of number of cylinders, horsepower, and weight.  Increasing any or all of these will likely lead to reduced mpg.  Transmission type is less important in mpg than these other three factors.  However, choice of a different model, such as produced using my step-forward approach, would lead to a different conclusion, i.e there is a significant difference on mpg with transmission type (and increase of 1 to 5.3 mpg for automatic transmissions).  I conclude that it is not possible to say with absolute certainty whether or not transmission type is important in mpg, as model choice can lead to somewhat different conclusions due to the colinearity of transmission type with many of the other variables measured. 
 
 Most of the code and output used to generate this document has been supressed for brevity.  The full code can however be found at https://github.com/Allison-Miller/Coursera_RegressionModels.
 
